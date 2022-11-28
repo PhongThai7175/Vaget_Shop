@@ -1,0 +1,57 @@
+
+  <div class="modal" id="OrderModal" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Place Order</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+        
+   
+          <form class="row g-3" action="/create-order-admin" method="POST">
+            <% if (customer) { %>
+            <input type="hidden" id="customerId" name="id" value="<%= customer.id %>">
+            <% } %>
+            <div class="col-md-6">
+              <label for="inputProduct" class="form-label">Product</label>
+         
+              <select id="inputProduct" class="form-control" name="productId" >
+                <option selected>---Choose product----</option>
+                <% for (let i=0; i < product.length; i++) { %>
+                  <% if (product[i].amount > 0) { %>
+                <option value="<%= product[i].id %> | <%= product[i].priceId %>"><%= product[i].name %></option>
+                  <% } %>
+                <% } %>
+              </select>
+            </div>
+          
+   
+       
+            <div class="col-md-6">
+              <label for="inputQuantity" class="form-label">Quantity</label>
+              <select id="inputQuantity" class="form-control" name="quantity" >
+             
+                        <% for (let i=0; i < 5; i++) { %>
+
+                    <option value="<%= i + 1 %>"><%= i + 1%></option>
+                   
+                      <% } %>
+              
+           
+              </select>
+            
+            </div>
+    
+            <div class="col-12">
+             
+            <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+    
+        </div>    
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <%- include('../partials/head.ejs'); %>
+    <title>Admin</title>
+</head>
+<body>
+  <%- include('../partials/navbar.ejs'); %>
+  <div class="container">
+    <h3 class="text-center mt-3 ">Create Customer</h3>
+    <hr>
+
+    <div class="form-container">
+      <form class="" action="/admin-post-user" method="POST">
+        
+        <div class="form-group mb-4 row">
+          <label for="inputAddress" class="col-sm-4 col-form-label ">Full Name</label>
+          <div class="col-sm-8"> <input type="text" class="form-control" id="inputAddress" name="fullname" required> </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <label for="inputAddress2" class="col-sm-4 col-form-label ">Address</label>
+          <div class="col-sm-8"> <input type="text" class="form-control" id="inputAddress2" name="address" required> </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <label for="inputEmail4" class="col-sm-4 col-form-label ">Email</label>
+          <div class="col-sm-8"> <input type="email" class="form-control"  name="email" required> </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <label for="inputPassword4" class="col-sm-4 col-form-label ">Password</label>
+          <div class="col-sm-8"> <input type="password" class="form-control"  name="password" required> </div>
+        </div>
+
+        <div class="form-group mb-4 row">
+          <div class="col-6">
+            <label for="inputCity" class="col-form-label ">Phone Number</label>
+            <input type="text" class="form-control" id="inputAddress2" name="phonenumber" required>
+          </div>
+
+          <div class="col-6">
+            <label for="inputState" class="col-form-label ">Gender</label>
+            <select id="inputState" class="form-control" name="gender" required>
+              <option selected>Choose...</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+          </div>   
+        </div>
+
+
+        <div class="form-group mt-4 mb-4 row">
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</body>
+</html>

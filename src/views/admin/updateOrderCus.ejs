@@ -1,0 +1,28 @@
+<!-- delete-product -->
+<div class="modal " id="orderModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Update Customer Information</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+ 
+          <form action="/delete-product" method="POST">
+            <% if (order) { %>
+            <div class="form-row">
+              <input type="hidden" id="custId" name="id" value="<%= order.id %>">
+              <div class="col-12">
+                <label for="inputAddress2" class="form-label">Address</label>
+                <input type="text" class="form-control" id="inputAddress2" name="address" value="<%= customer.address %>">
+              </div>
+                
+            <button type="submit" class="btn btn-warning">Delete</button>
+            <% } %>
+          </form>
+        
+        </div>    
+      </div>
+    </div>
+  </div>
+  

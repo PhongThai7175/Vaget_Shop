@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<%- include('../partials/head.ejs'); %>
+	<title>Admin</title>
+	<link rel="stylesheet" type="text/css" href="css/admin.css">
+</head>
+
+<body>
+	<!--  Syntax để include navbar      -->
+	<%- include('../partials/navbar.ejs'); %>
+		<div class="container">
+			<br>
+			<div class="row justify-content-between">
+
+					<div class="col-md-4 ">
+						<div class="card text-center text-white  mb-3" id="total-orders">
+							<div class="card-header">
+								<h5 class="card-title">Total Orders</h5>
+							</div>
+							<div class="card-body">
+									<% if(allorder)   { %>
+									<h3 class="card-title"><%= allorder.length %></h3>
+									<% } %>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="card text-center text-white  mb-3" id="orders-delivered">
+							<div class="card-header">
+								<h5 class="card-title">New Orders</h5>
+							</div>
+							<div class="card-body">
+								<% let count = 0 %>
+								<% for (let i=0; i < allorder.length; i++) { %>
+								  
+									<% if(allorder[i]. status === 'S1') { %>
+										<% count++ %>
+									  
+									<% } %> 
+								   <% if(i == allorder.length - 1) { %>
+									<h3 class="card-title"><%= count %></h3>
+									<% } %>
+	
+								<% } %>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="card text-center text-white  mb-3" id="orders-pending">
+							<div class="card-header">
+								<h5 class="card-title">Delivered Orders</h5>
+							</div>
+							<div class="card-body">
+								<% let count1 = 0 %>
+								<% for (let i=0; i < allorder.length; i++) { %>
+								  
+									<% if(allorder[i]. status === 'S2') { %>
+										<% count1++ %>
+									  
+									<% } %> 
+								   <% if(i == allorder.length - 1) { %>
+									<h3 class="card-title"><%= count1 %></h3>
+									<% } %>
+	
+								<% } %>
+							</div>
+						</div>
+					</div>
+
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-lg-5 mb-5">
+					<div class="card">
+
+						<div class="card-header pb-0">
+							<h4 class="float-start">Customers</h4>
+						</div>
+
+						<div class="card-body">
+							<table class="table table-sm table-hover">
+								<tr>
+									<th>Customer</th>
+									<th>Phone</th>
+									<th></th>
+								</tr>
+								<% let cusLength = customer.length %>
+								<% for (let i=0; i < cusLength; i++) { %>
+									<% if (customer[i].positionData.value === 'Customer') { %>
+									<tr>
+										
+										<td>
+											<%= customer[i].fullname %>
+										</td>
+										<td>
+											<%= customer[i].phonenumber %>
+										</td>
+										<td><a class="btn btn-sm btn-info text-white"
+												href="/customer-detail?id=<%= customer[i].id %>">More info</a></td>
+									</tr>
+									<% } %>
+								<% } %>
+							</table>
+						</div>
+
+						<div class="card-body pt-0">
+							<a class="btn btn-primary btn-sm " href="/admin-create-user">New Customer</a>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-lg-7">
+					
+					<div class="card">
+
+						<div class="card-header pb-0">
+							<h4 class="float-start">Lasted Orders</h4>
+						</div>
+
+						<div class="card-body">
+							<table class="table table-sm">
+								<tr>
+									<th>Customer</th>
+									<th>Product</th>
+									<th>Date Orderd</th>
+									<th>Status</th>
+									<th>Update</th>
+									<th>Delete </th>
+								</tr>
+								<% let length = allorder.length %>
+								<% for (let i=0; i < length; i++) { %>
+								<tr>
+									<td><%= allorder[i].customerData.fullname %></td>
+									<td><%= allorder[i].productData.name %></td>
+									<td><%= allorder[i].createdAt %></td>
+									<td><%= allorder[i].orderStatusData.value %></td>
+									<td><a class="btn btn-sm btn-info" href="/update-order?id=<%= allorder[i].id%>">Update</td>
+									<td><a class="btn btn-sm btn-danger" href="/delete-order?id=<%= allorder[i].id%>">Delete</td>
+								</tr>
+								<% } %>
+
+								<tr>
+									
+								</tr>		
+							</table>
+						</div> <!-- end card-body -->
+
+						
+					</div>
+
+
+				</div>
+				<footer class="col">
+					<br>
+					<hr>
+					<%- include('../partials/footer.ejs'); %>
+				</footer>
+			
+
+
+
+
+
+
+
+</body>
+
+</html>

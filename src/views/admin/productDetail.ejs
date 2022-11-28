@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/head.ejs'); %>
+    <title>Admin</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs'); %>
+  
+    <div class="container">	
+        <br>
+        <% if(product) { %>
+        <div class="row">
+            
+           
+            <div class="col-3">
+                <div class="card card-body">
+                  
+                    <h5 >Name: <%= product.name %></h5>
+
+                    <hr>
+                    <img  width="100%" src="data:image/png;base64,<%= product.image %>"/>
+                    <hr>
+                  
+                    <button class="btn btn-info  "  data-bs-toggle="modal" data-bs-target="#updateModal">Update Product</button>
+             
+                    <button class="btn btn-danger  mt-3"  data-bs-toggle="modal" data-bs-target="#deleteModal">Delete Product</button>
+              
+               
+                    <%- include('./updateProduct.ejs'); %>    
+                   
+                </div>
+            </div>
+          
+           
+            <div class="col-9">             
+                <div class="card card-body">
+                    <h5>Detail Informations: </h5>
+                    <hr>       
+                    <p>Size: <%= product.sizeData.value %>	</p>    
+                    <p>Price: <%= product.priceId %> $	</p>         
+                    <p>Amout: <%= product.amount %>	</p>
+                   
+                    <h5>Description:</h5>
+                   
+                    <p><%= product.description %>  </p>
+          
+                </div>      
+                
+            </div>  
+            <%- include('./deleteProduct.ejs'); %>   
+            
+        </div>      
+      
+    <% } %> 
+</body>
+</html>

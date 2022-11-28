@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%- include('../partials/head.ejs'); %>
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+    <title>Register</title>
+
+  
+</head>
+  <body>
+    <div class="container">
+      <div class="register">
+        <form id="register-form" action="/sign-up" method="post">
+          <div class="content">
+            <div class="title mb-4">
+              <h2>Register</h2>
+            </div>
+            
+            <% if (error) { %>
+              <div style="padding: 0px 25px !important ;" class="alert alert-danger" role="alert">
+                <%= error %>
+              </div>
+            <% } %> 
+       
+            <div class="row mb-2 align-items-center">
+              <label for="inputEmail" class="col-form-label col-sm-2">Email:</label>
+              <div class="col-sm-4">
+                <input  type="email" class="form-control"  name="email">
+              </div>
+            <!-- </div>
+
+            <div class="row mb-2 align-items-center"> -->
+              <label for="inputPassword" class="col-form-label col-sm-2">Password:</label>
+              <div class="col-sm-4">
+                <input  type="password" class="form-control" name="password">
+              </div>
+            </div>
+
+            <div class="row mb-2 align-items-center">
+              <label for="inputFullname" class="col-form-label col-sm-2">Full Name:</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputName" name="fullname" >
+              </div>
+            <!-- </div>
+
+            <div class="row mb-2 align-items-center"> -->
+              <label for="inputAddress" class="col-form-label col-sm-2">Address:</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputAddress" name="address" > 
+              </div>
+            </div>
+
+            <div class="row mb-2 align-items-center">
+              <label for="inputPhone" class="col-form-label col-sm-2">Phone Number:</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputPhone" name="phonenumber" >
+              </div>
+            <!-- </div>
+            <div class="row mb-2 align-items-center"> -->
+              <label for="inputGender" class="col-form-label col-sm-2">Gender:</label>
+              <div class="col-sm-4">
+                <select id="inputState" class="form-control" name="gender" required>
+                  <option value="">--Choose--</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                </select>
+              </div>
+            </div>
+           
+
+            <div class="row align-items-center text-center">
+              <button type="submit" class="btn btn-register btn-form col-4">Register</button>
+            </div>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jquery.validate.js"></script>
+
+  <script type="text/javascript">
+    $( document ).ready( function() {
+      $("#register-form").validate({
+        
+        rules: {
+          address: "required",
+          gender: "required",
+          phonenumber: {
+            required: true,
+            digits: true
+          },
+          fullname: {
+            required: true,
+            minlength:2,
+            maxlength:20
+          },
+          email: {
+            required: true,
+            email:true,
+            regex: /^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+          },
+          password: {
+            required: true,
+            minlength:8,
+            maxlength:20,
+            pwcheck: true
+          }
+        },
+        messages: {
+          email: {
+            regex: "Please enter a valid email address."
+          },
+          password: {
+            pwcheck: "Password must contain a digit, uppercase and lowercase."
+          },
+          phonenumber: {
+            regex: "Please enter only number."
+          },
+          gender: {
+            required: "Please select an option."
+          }
+        },
+        
+        errorElement: "em",
+        errorPlacement: function (error, element) {
+          if(element.attr("type") == "checkbox"){
+            error.addClass("help-block").insertAfter($(element).parents('.checkbox'));
+          } else {
+            error.addClass("help-block").insertAfter(element)
+          }
+        },
+
+        highlight: function(element, errorClass, validClass) {
+          $(element).addClass('has-error').removeClass('has-success');
+        },
+
+        unhighlight: function(element, errorClass, validClass) {
+          $(element).removeClass('has-error').addClass('has-success');
+        }
+      })
+    });
+
+  </script>
+
+</html>

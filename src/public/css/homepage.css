@@ -1,0 +1,218 @@
+
+
+:root {
+  /* Primary color */
+  --clr-lightgreen: #b6db6b;
+  --clr-green: #7ca334;
+  --clr-darkgreen: #2f5b25;
+  --clr-orange: #E8A62D;
+  --clr-gray: #ECEADA;
+  --clr-dark: #525969;
+  --clr-berry: #5C2622;
+  --clr-brown:  #b78b58;
+
+  /* Other setting */
+  --border-radius: 15px;
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  --max-width: 1170px;
+}
+
+/*border: red 2px solid;*/
+
+/* ========== */
+/* --HEADER-- */
+/* ========== */
+
+#header {
+	position: absolute;
+	width: 100%;
+	z-index: 10;
+	color: white;
+}
+
+.navbar {
+	padding: 0;
+}
+
+.navbar-brand {
+	font-size: 35px;
+	font-weight: bold;
+	padding: 0 .5rem;
+	border: 1px solid white;
+}
+
+.navbar-collapse {
+	background: rgb(82, 89, 105, 0.8);
+}
+
+.navbar-collapse ul li {
+	margin-top: 1rem;
+}
+
+.navbar-collapse ul li a {
+	margin-right: 1rem;
+	color: white;
+	padding: .4rem .8rem;
+	font-size: medium;
+}
+
+.navbar-collapse ul li a:hover {
+	color: white;
+	background: rgb(106, 150, 31,0.8);
+}
+
+.fa-caret-down {
+	color: white;
+	font-size: 40px;
+	margin: 1rem 0;
+	font-weight: 200;
+}
+
+
+@media(min-width: 1000px ) {
+	.dropdown-btn, .navbar-brand {
+		visibility: hidden;
+		margin-left: -4rem;
+	}
+
+	.navbar-collapse {
+		background: none;
+	}
+}
+
+/* =============== */
+/* -- JUMBOTRON -- */
+/* =============== */
+
+.main {
+	  background: url(media/pickled.jpg);
+	  background-repeat: no-repeat;
+	  background-position: center;
+	  background-size: cover;
+	  min-height: 100vh;
+	  padding: 280px 0 220px;
+}
+
+.main .container {
+	margin: 6rem 8rem 0;
+	padding: 1rem 2rem;
+	font-size: large;
+	color: white;
+	letter-spacing: .2rem;
+	background: rgb(81, 120, 12, 0.6);
+}
+
+.main .container h1 {
+	text-transform: capitalize;
+	font-size: 60px;
+}
+
+
+/* ================= */
+/* --PICK UP A BOX-- */
+/* ================= */
+
+.pickbox {
+	margin: 4rem 0;
+}
+
+.pickbox .container {
+	margin: 0 auto;
+	padding: 2rem 0;
+	background: rgb(81, 120, 12, 0.8);
+}
+
+.pickbox .container .row {
+	justify-content: center;
+}
+
+.pickbox .card {
+	background: white;
+	border: none;
+	border-radius: 0;
+}
+
+.pickbox .card-body {
+	color: var(--clr-berry);
+}
+
+.pickbox .card-img-top {
+    height: 10vw;
+    object-fit: cover;
+}
+
+.pickbox .btn {
+	background: var(--clr-brown);
+	color: white;
+	text-transform: capitalize;
+}
+
+
+/* ================= */
+/* --SIGN UP MODAL-- */
+/* ================= */
+
+#SignUpModal .btn {
+	background: var(--clr-brown);
+	border: var(--clr-dark) 1px solid;
+}
+
+
+/* ================ */
+/* ---- FOOTER ---- */
+/* ================ */
+
+footer {
+	background: url(media/footer-bg.jpg) center no-repeat;
+	background-size: 1800px;
+	height: 60vh;
+}
+
+footer .container {
+	margin: 0 auto;
+	padding-top: 2rem;
+}
+
+footer .textbox {
+	background: white;
+	margin: 4rem auto 2rem;
+	width: 400px;
+	height: 200px;
+	padding: 1rem 0;
+	color: var(--clr-berry);
+}
+
+footer .links {
+	margin: 2rem auto;
+	color: white;
+	font-size: 15px;
+}
+
+footer .links ul li {
+	padding: 0 1rem;
+}
+
+footer .links ul li a:hover {
+	border-bottom: white 1px solid;
+}
+
+/* ================ */
+/*  PRODUCT DETAIL  */
+/* ================ */
+
+.product-detail {
+	background: var(--clr-dark);
+}
+
+.product-detail .col {
+	margin-top: 10rem;
+	padding-bottom: 10rem;
+}
+
+.product-detail .product-img img {
+	width: 600px;
+}

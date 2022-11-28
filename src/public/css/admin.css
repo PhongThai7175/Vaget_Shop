@@ -1,0 +1,35 @@
+
+body{
+    background-color: #ebeff5;
+}
+
+@media (min-width: 1200px) { 
+
+    .form-container {
+        margin: 2rem 15rem 4rem;
+    }
+}
+
+
+@media (min-width: 1400px) { 
+
+    .form-container {
+        margin: 2rem 25rem 4rem;
+    }
+}
+
+
+#total-orders{
+    background-color: #4cb4c7;
+}
+
+
+#orders-delivered{
+    background-color: #7abecc;
+}
+
+#orders-pending{
+    background-color: #7CD1C0;
+}
+
+

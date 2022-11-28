@@ -1,0 +1,45 @@
+<section id="header">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">FFTY</a>
+            <button class="btn dropdown-btn" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i class="fas fa-caret-down"></i>
+            </button>
+  
+          <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item"><a href="/">Home</a></li>
+              <li class="nav-item"><a href="#">About Us</a></li>
+              <li class="nav-item"><a href="#">Contact</a></li>
+              <li class="nav-item"><a href="#">Recipes</a></li>
+            </ul>
+       
+          <% if(user) { %>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a href="/order-detail?id=<%=user.id%>">Hello, <%= user.fullname %></a>
+              </li>
+  
+              <li class="nav-item">
+                <a href="/log-out">Sign Out</a>
+              </li>
+            </ul> 
+            
+          <% } else { %>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a href="/login">Sign In</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="/sign-up">Sign Up</a>
+            </li>
+          </ul> 
+          <% } %>
+
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>

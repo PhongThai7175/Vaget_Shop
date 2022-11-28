@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/head.ejs'); %>
+    <title>Admin</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs'); %>
+    <div class="container">	
+        <br>
+        <br>
+        <h3 class="card-title text-center">Update Order Status</h3>
+        <br>
+        
+        <div class="row">
+            
+           
+            <div class="col-6">
+                <div class="card card-body fs-6 p-5">
+                    <h3>Order Detail</h3> <hr>
+                  <% if (order) { %>
+                    <p><b>Product:</b>    <%= order.productData.name %></p>
+                    <p><b>Quantity:</b>   <%= order.quantity %></p>
+                    <p><b>Customer Name:</b> 	<%= order.customerData.fullname %></p>
+                    <p><b>Phone Number:</b> 	<%= order.customerData.phonenumber %></p>
+                    <p><b>Customer Adress:</b> <%= order.customerData.address %></p>
+                    <p><b>Product Ordered:</b> <%= order.createdAt %></p>
+                   
+                <% } %>
+                   
+                </div>
+            </div>
+          
+           
+            <div class="col-6">             
+                <div class="card card-body p-5">
+                    <h3><b>Order Status</b></h3>
+                    <% if (order) { %>
+                    <p style="color: blue;">Status:    <%= order.orderStatusData.value %></p>
+                    <% } %>
+                    <form class="row g-3" action="/update-order" method="POST">
+                        <input type="hidden"  name="id" value="<%= order.id %>">
+                        <input type="hidden"  name="customerId" value="<%= order.customerId %>">
+                        
+
+                        <div class="col-md-12">
+                          <select id="inputState" class="form-control" name="status" >
+                            <% for (let i=0; i < status.length; i++) { %>
+                                <option value="<%= status[i].keyMap %>" > <%= status[i].value %></option>              
+                            <% } %>
+                          </select>
+                        </div>
+                
+                        <div class="col-12">
+                         
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                      </form>
+            
+        </div>      
+      
+
+</body>
+</html>

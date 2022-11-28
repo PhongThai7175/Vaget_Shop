@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.">
+    <%- include('../partials/head.ejs'); %>
+
+    <link rel="stylesheet" type="text/css" href="css/homepage.css">
+
+
+    <title>Home Page</title>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+
+  <%- include('../homepage/navbar.ejs'); %>
+  
+  <!-- Product Detail -->
+  <section class="product-detail">
+    <div class="container">
+      <div class="row px-5">
+        <div class="col product-img mx-2">
+            <img src="data:image/png;base64,<%= product.image %>">
+        </div>
+        <div class="col mx-4">
+          <div class="product-content bg-light p-4">
+            <p class="text-center">ORGANIC PRODUCE FARM BOXES</p>
+            <h5 class="text-center mb-4"><%= product.name %></h5>
+            <p class="card-text ps-2 pe-5"><%= product.description %></p>
+            <p class="card-text ps-2">Available: <%= product.amount %></p>
+            <p class="card-text ps-2">Price: <%= product.priceId %>$</p>
+            <% if (product.amount > 0) { %>
+              <!--  -->
+              <form class="row g-3" method="POST" action="/buy-product">
+                <% if (user) { %>
+                  <input type="hidden" name="id" value="<%= user.id %>">
+                  <% } %>
+                    <% if(product) { %>
+                      <input type="hidden" name="productId" value="<%= product.id %>">\
+                      <div class="col-3 ps-3">
+                        <label for="qty" class="form-label">Quantity</label>
+
+                        <input type="number" class="form-control mb-4" id="qty" value="1" name="quantity" min="1" max="<%= product.amount %>">
+
+                        <p class="form-label fw-bold">Total: <span id="total" name="total"></span></p>
+
+                        <button type="submit" class="btn btn-success ps-2">Buy Me</button>
+                      </div>
+                      
+                    <% } %>
+              </form>
+            <% } else {%>
+              <div class="col-12 ">
+                <button type="submit" class="btn btn-warning disabled ps-2">Sold out ! Please come back later </button>
+              </div>
+            <% } %>
+          </div>                    
+        </div>
+      </div>    
+    </div>
+
+  </section>
+
+  <%- include('buyProduct'); %>
+
+  <%- include('../partials/footer.ejs'); %>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript" src="jquery-3.1.1.js"></script>
+
+  <script type="text/javascript">
+    $(function () {
+
+        $(document).ready(function () {
+            updateHandler();
+        });
+
+        $("#qty").on('input', updateHandler);
+    });
+
+    function updateHandler(e) {
+
+        var quantity = $("#qty").val();
+        var price = <%= product.priceId  %>;
+        var endPrice = price * quantity;
+
+        $("#total").html(endPrice);
+
+    }
+  </script>
+</body>
+</html>

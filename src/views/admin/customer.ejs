@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/head.ejs'); %>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <title>Product</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs'); %>
+    <div class="container">
+
+            <div class="product-header">
+                <h2 class="mb-3 mt-5 text-center">Manage Customers</h2>
+                <div class="card-body pt-0 mb-5">
+                    <ul class="ps-0">
+                        <li class="float-start">
+                            <a class="btn btn-primary btn-sm " href="/admin-create-user">New Customer</a>
+                        </li>
+                        <li class="float-end">
+                            <form action="/customer" class="d-flex"  method="GET">
+                                <input class="form-control me-2 py-1" type="text" id="search" name="search" placeholder="Search customer" aria-label="Search" value="<%= %>" />
+                            <button class="btn btn-sm btn-secondary" type="submit">Search</button>
+                            </form>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div class="row mt-3">
+                <table class="table table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>Full name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Phone number</th>
+                        <th>Gender</th>
+                        <th>Action</th>
+                    </tr>
+                    
+                    <% for (let i=0; i < customer.length; i++) { %>
+                        
+                    
+                    <tr>
+                  
+                        <td class=""><%= i + 1 %></td>
+                        <td><%= customer[i].fullname %></td>
+                        <td class=""><%= customer[i].email %></td>
+                        <td class=""><%= customer[i].address %></td>
+                        <td class=""><%= customer[i].phonenumber %></td>
+                        <td ><%= customer[i].gender %></td>
+                   
+                        <td class="">                 
+                            <a class="btn btn-sm btn-info" href="/customer-detail?id=<%= customer[i].id %>">More Info</a>
+                        </td>
+              
+                        
+                    </tr>
+                    <% } %>
+                  
+                  </table>
+
+            </div>
+</body>
+</html>

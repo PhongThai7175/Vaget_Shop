@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/head.ejs'); %>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <title>Product</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs'); %>
+    <div class="container">
+
+        <div class="row mt-5">
+            <div class="col">
+                <div class="col-md">
+                    <div class="card text-center text-white  mb-3" id="total-orders">
+                        <div class="card-header">
+                            <h5 class="card-title">Total Product</h5>
+
+                        </div>
+                        <div class="card-body">
+                            <% if(product)   { %>
+                            <h3 class="card-title"><%= product.length %></h3>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="col-md">
+                    <div class="card text-center text-white  mb-3" id="orders-delivered">
+                        <div class="card-header">
+                            <h5 class="card-title">In Stock</h5>
+                        </div>
+                        <div class="card-body">
+                            <% let count = 0 %>
+                            <% for (let i=0; i < product.length; i++) { %>
+                              
+                                <% if(product[i].amount  > 0) { %>
+                                    <% count++ %>
+                                  
+                                <% } %> 
+                               <% if(i == product.length - 1) { %>
+                                <h3 class="card-title"><%= count %></h3>
+                                <% } %>
+
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="col-md">
+                    <div class="card text-center text-white  mb-3" id="orders-pending">
+                        <div class="card-header">
+                            <h5 class="card-title">Out of stock</h5>
+                        </div>
+                        <div class="card-body">
+                            <% let count1 = 0 %>
+                            <% for (let i=0; i < product.length; i++) { %>
+                              
+                                <% if(product[i].amount === 0) { %>
+                                    <% count1++ %>
+                                  
+                                <% } %> 
+                               <% if(i == product.length - 1) { %>
+                                <h3 class="card-title"><%= count1 %></h3>
+                                <% } %>
+
+                            <% } %>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+
+            <div class="product-header">
+                <h2 class="mb-2 text-center">Products List</h2>
+                <button class="btn btn-primary btn-block"  data-bs-toggle="modal" data-bs-target="#productModal">Add new product</button>
+                <%- include('./createProduct.ejs'); %>
+            </div>
+            <div class="row mt-3">
+                <table class="table table-striped">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Amount</th>
+                        <th>Size</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    <% for (let i=0; i < product.length; i++) { %>
+                    
+                    <tr>
+                  
+                        <td class="col-1"><%= i + 1 %></td>
+                        <td><%= product[i].name %></td>
+                        <td class="col-4"><%= product[i].description %></td>
+                        <td class="col-1"><%= product[i].priceId %> $</td>
+                        <td class=""><%= product[i].amount %></td>
+                        <td ><%= product[i].sizeData.value %></td>
+                       
+                        <% if (product[i].amount > 0) { %>
+                            <td>In stock</td>
+                        <% } else { %>
+                            <td>Out of stock</td>
+                        <% } %>
+                        
+                   
+                        <td class="">                 
+                            <a class="btn btn-sm btn-info" href="/product-detail?id=<%= product[i].id %>">View</a>
+                        </td>
+              
+                        
+                    </tr>
+                    <% } %>
+                  
+                  </table>
+
+            </div>
+</body>
+</html>

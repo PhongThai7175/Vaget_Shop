@@ -1,0 +1,48 @@
+<div class="modal" id="updateModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Update Product</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3" method="POST" action="/update-product" enctype="multipart/form">
+          <% if(product) { %>
+            <input type="hidden" id="custId" name="id" value="<%= product.id %>">
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Product Name</label>
+              <input type="text" class="form-control" name="name" value="<%= product.name %>">
+            </div>
+            <div class="col-md-3">
+              <label for="inputPassword4" class="form-label">Price</label>
+              <input  type="text" class="form-control"   name="priceId" required value="<%= product.priceId %>">
+            </div>
+            <div class="col-3">
+              <label for="inputAddress2" class="form-label">Amount</label>
+              <input type="text" class="form-control" id="inputAddress2" name="amount" value="<%= product.amount %>">
+            </div>
+            <div class="col-12">
+              <label for="inputAddress" class="form-label">Description</label>
+              <input type="text" class="form-control input-lg" id="inputAddress" name="description"
+                value="<%= product.description %>">
+            </div>
+
+
+            <div class="col-md-12">
+              <label for="inputCity" class="form-label">Size</label>
+              <select id="inputState" class="form-control" name="size">
+                <% for (let i=0; i < size.length; i++) { %>
+                  <option value="<%= size[i].keyMap %>" > <%= size[i].value %></option>              
+                  <% } %>
+              </select>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+            <% } %>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

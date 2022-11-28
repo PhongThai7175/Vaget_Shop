@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/head.ejs'); %>
+    <link rel="stylesheet" type="text/css" href="css/admin.css">
+    <title>Product</title>
+</head>
+<body>
+    <%- include('../partials/navbar.ejs'); %>
+    <div class="container">
+
+            <div class="product-header">
+                <h2 class="mb-3 mt-5 text-center">Manage Orders</h2>
+                <div class="card-body pt-0 mb-5">
+                    <ul class="ps-0">
+                        <li class="float-end">
+                            <form action="/order" class="d-flex"  method="GET">
+                                <input class="form-control me-2 py-1" type="text" id="search" name="search" placeholder="Search orders" aria-label="Search" value="<%= %>" />
+                            <button class="btn btn-sm btn-secondary" type="submit">Search</button>
+                            </form>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+            <div class="row mt-3">
+                <table class="table table-striped">
+                    <tr> 
+                        <th>#</th>
+                        <th>Customer</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Date Orderd</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Delete </th>
+                    </tr>
+                    
+                    <% for (let i=0; i < order.length; i++) { %>
+                    <tr>
+                        <td><%= order[i].id %></td>
+                        <td><%= order[i].customerData.fullname %></td>
+                        <td><%= order[i].productData.name %></td>
+                        <td><%= order[i].quantity %></td>
+                        <td><%= order[i].total %></td>
+                        <td><%= order[i].createdAt %></td>
+                        <td><%= order[i].orderStatusData.value %></td>
+                        <td><a class="btn btn-sm btn-info" href="/update-order?id=<%= order[i].id%>">Update</td>
+                        <td><a class="btn btn-sm btn-danger" href="/delete-order?id=<%= order[i].id%>">Delete</td>
+                    </tr>
+                    <% } %>
+
+                    <tr>
+                        
+                    </tr>
+                  
+                  </table>
+
+            </div>
+</body>
+</html>
